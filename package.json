@@ -1,0 +1,22 @@
+{
+  "name": "ts_lesson03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SDudyuk/ts_lesson03.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SDudyuk/ts_lesson03/issues"
+  },
+  "homepage": "https://github.com/SDudyuk/ts_lesson03#readme",
+  "dependencies": {
+    "typescript": "^5.3.2"
+  }
+}
