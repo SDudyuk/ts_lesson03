@@ -1,15 +1,29 @@
+enum ExperiencesEnum {
+  Lower,
+  Middle,
+  Hight,
+}
+class Lecture {
+  _name: string;
+  _surname: string;
+  _position: string;
+  company: string;
+  experience: ExperiencesEnum;
+  courses: any[] = [];
+  contacts: string;
+}
 class School {
   // implement 'add area', 'remove area', 'add lecturer', and 'remove lecturer' methods
 
-  _areas = [];
-  _lecturers = []; // Name, surname, position, company, experience, courses, contacts
+  _areas: Area[] = [];
+  _lecturers: Lecture[] = []; // Name, surname, position, company, experience, courses, contacts
 
-  get areas() {
-    this._areas;
+  get areas(): Area[] {
+    return this._areas;
   }
 
-  get lecturers() {
-    this._lecturers;
+  get lecturers(): Lecture[] {
+    return this._lecturers;
   }
 }
 
@@ -56,22 +70,42 @@ class Level {
   }
 }
 
+enum StatusEnum {
+  Active,
+  Vacation,
+  Deducted,
+}
+
 class Group {
   // implement getters for fields and 'add/remove student' and 'set status' methods
 
-  _area;
-  _status;
+  _area: Area;
+  _status: StatusEnum;
   _students: Student[] = []; // Modify the array so that it has a valid toSorted method*
-  //_studentsFix = new Uint8Array(this._students);
+  _directionName: string;
+  _levelName: string;
 
-  constructor(directionName, levelName) {
-    this.directionName = directionName;
-    this.levelName = levelName;
+  constructor(directionName: string, levelName: string) {
+    this._directionName = directionName;
+    this._levelName = levelName;
+  }
+
+  addStudent(student: Student): void {
+    this._students.push(student);
+  }
+
+  removeStudent(): Student | undefined {
+    return this._students.pop();
+  }
+
+  set status(value: StatusEnum) {
+    this._status = value;
   }
 
   showPerformance() {
-    const sortedStudents = this._students.toSorted(
-      (a, b) => b.getPerformanceRating() - a.getPerformanceRating()
+    const sortedStudents: Student[] = this._students.sort(
+      (a: Student, b: Student) =>
+        b.getPerformanceRating() - a.getPerformanceRating()
     );
     return sortedStudents;
   }
