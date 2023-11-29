@@ -71,9 +71,9 @@ class Level {
 }
 
 enum StatusEnum {
-  Active,
-  Vacation,
-  Deducted,
+  Active = 1,
+  Vacation = 0,
+  Deducted = -1,
 }
 
 class Group {
