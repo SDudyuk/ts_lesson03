@@ -11,6 +11,10 @@ class Lecture {
   experience: ExperiencesEnum;
   courses: any[] = [];
   contacts: string;
+
+  get fullName(): string {
+    return `${this._surname} ${this._name}`;
+  }
 }
 class School {
   // implement 'add area', 'remove area', 'add lecturer', and 'remove lecturer' methods
@@ -24,6 +28,24 @@ class School {
 
   get lecturers(): Lecture[] {
     return this._lecturers;
+  }
+
+  addArea(value: Area): void {
+    this._areas.push(value);
+  }
+
+  removeArea(name: string): void {
+    const index = this._areas.map((e) => e.name).indexOf(name);
+    this._areas.splice(index, 1);
+  }
+
+  addLecture(value: Lecture): void {
+    this._lecturers.push(value);
+  }
+
+  removeLecture(fullName: string): void {
+    const index = this._lecturers.map((e) => e.fullName).indexOf(fullName);
+    this._lecturers.splice(index, 1);
   }
 }
 
@@ -44,8 +66,9 @@ class Area {
     this._levels.push(level);
   }
 
-  removeLevel(): Level | undefined {
-    return this._levels.pop();
+  removeLevel(name: string): void {
+    const index = this._levels.map((e) => e.name).indexOf(name);
+    this._levels.splice(index, 1);
   }
 }
 
@@ -61,12 +84,17 @@ class Level {
     this._description = description;
   }
 
+  get name(): string {
+    return this._name;
+  }
+
   addGroup(group: Group) {
     this._groups.push(group);
   }
 
-  removeGroup(): Group | undefined {
-    return this._groups.pop();
+  removeGroup(name: string): void {
+    const index = this._groups.map((e) => e.name).indexOf(name);
+    this._groups.splice(index, 1);
   }
 }
 
@@ -94,12 +122,17 @@ class Group {
     this._students.push(student);
   }
 
-  removeStudent(): Student | undefined {
-    return this._students.pop();
+  removeStudent(fullName: string): void {
+    const index = this._students.map((e) => e.fullName).indexOf(fullName);
+    this._students.splice(index, 1);
   }
 
   set status(value: StatusEnum) {
     this._status = value;
+  }
+
+  get name(): string {
+    return this._directionName;
   }
 
   showPerformance() {
